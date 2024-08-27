@@ -49,16 +49,23 @@ namespace MVC
                 });
 
 
-                endPoint.MapGet("/Products", async (context) =>
+                //endPoint.MapGet("/Products", async (context) =>
+                //{
+                //    await context.Response.WriteAsync("You Are in Products Page");
+                //});
+                endPoint.MapGet("/Products/{id=100}", async (context) =>
                 {
-                    await context.Response.WriteAsync("Products Has been Created!");
+                    var id = context.Request.RouteValues["id"];
+                    if (id != null) {
+                        id = Convert.ToInt32(context.Request.RouteValues["id"]);
+                        await context.Response.WriteAsync($"Your getting Product with {id}");
+
+                    }
+                    else
+                        await context.Response.WriteAsync("You Are in Products Page");
+
                 });
-                endPoint.MapGet("/Products/Id={id}", async (context) =>
-                {
-                    var id = Convert.ToInt32(context.Request.RouteValues["id"]);
-                    await context.Response.WriteAsync($"Your getting Product with {id}");
-                });
-                endPoint.MapGet("/Books/Author/{authorName}/{bookId}", async (context) =>
+                endPoint.MapGet("/Books/Author/authorName={authorName:alpha:minlength(4):maxlength(10)}/bookId={bookId}", async (context) =>
                 {
                     var bookId = Convert.ToInt32(context.Request.RouteValues["bookId"]);
                     var authorName = Convert.ToString(context.Request.RouteValues["authorName"]);
