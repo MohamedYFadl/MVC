@@ -1,0 +1,27 @@
+﻿<!DOCType html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @* <title>@ViewBag.Title</title> *@
+    <link rel="stylesheet" href="~/Lib/bootstrap/css/bootstrap.min.css"></link>
+</head>
+<body>
+    <header>
+        <center>
+            <a href="/Home/Index" class="btn btn-primary">Home</a>
+            <a href="/Home/AboutUs" class="btn btn-warning">About Us</a>
+            <a href="/Home/Privacy" class="btn btn-warning">Privacy</a>
+            <a href="/Home/ContactUs" class="btn btn-warning">ContactUs</a>
+        </center>
+    </header>
+    <div class="text-center">
+        @RenderBody()
+    </div>
+    <footer class="fixed-bottom">
+        <center>
+            CopyRights &copy; RouteAcadamy @DateTime.Now.Year
+        </center>
+    </footer>
+</body>
+</html>
